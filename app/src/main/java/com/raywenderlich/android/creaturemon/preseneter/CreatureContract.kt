@@ -1,5 +1,6 @@
 package com.raywenderlich.android.creaturemon.preseneter
 
+import androidx.annotation.DrawableRes
 import androidx.constraintlayout.widget.ConstraintAttribute
 
 interface CreatureContract {
@@ -10,5 +11,8 @@ interface CreatureContract {
         fun isDrawable(): Boolean
     }
 
-    interface View
+    interface View {
+        fun showHitPoints(hitPoints: String)
+        fun showAvatarDrawable(@DrawableRes resourceId: Int)
+    }
 }
