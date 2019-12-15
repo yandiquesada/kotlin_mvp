@@ -2,13 +2,14 @@ package com.raywenderlich.android.creaturemon.preseneter
 
 import androidx.annotation.DrawableRes
 import androidx.constraintlayout.widget.ConstraintAttribute
+import com.raywenderlich.android.creaturemon.model.AttributeType
 
 interface CreatureContract {
     interface presenter {
         fun updateName(name: String)
-        fun attributeSelected(attributeType: ConstraintAttribute.AttributeType, position: Int)
+        fun attributeSelected(attributeType: AttributeType, position: Int)
         fun drawableSelected(drawable: Int)
-        fun isDrawable(): Boolean
+        fun isDrawableSelected(): Boolean
     }
 
     interface View {

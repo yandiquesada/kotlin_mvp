@@ -2,7 +2,7 @@ package com.raywenderlich.android.creaturemon.preseneter
 
 import java.lang.ref.WeakReference
 
-abstract class Presenter<V> {
+abstract class BasePresenter<V> {
     private var view: WeakReference<V>? = null
 
     fun setView(view: V) {
