@@ -2,9 +2,11 @@ package com.raywenderlich.android.creaturemon.preseneter
 
 import androidx.constraintlayout.widget.ConstraintAttribute
 import com.raywenderlich.android.creaturemon.model.*
+import com.raywenderlich.android.creaturemon.model.room.RoomRepository
 import kotlinx.android.synthetic.main.activity_creature.*
 
-class CreaturePresenter(private val creatureGenerator: CreatureGenerator = CreatureGenerator()): BasePresenter<CreatureContract.View>(), CreatureContract.presenter {
+class CreaturePresenter(private val creatureGenerator: CreatureGenerator = CreatureGenerator(),
+                        private val creatureRepository: CreatureRepository = RoomRepository()): BasePresenter<CreatureContract.View>(), CreatureContract.presenter {
 
     private lateinit var creature: Creature
 
@@ -22,7 +24,7 @@ class CreaturePresenter(private val creatureGenerator: CreatureGenerator = Creat
     }
 
     override fun updateName(name: String) {
-        this.name
+        this.name = name
         updateCreature()
     }
 
@@ -46,5 +48,18 @@ class CreaturePresenter(private val creatureGenerator: CreatureGenerator = Creat
 
     override fun isDrawableSelected(): Boolean {
         return drawable != 0
+    }
+
+    private fun canSaveCreature(): Boolean {
+        return intelligence != 0 && endurance != 0 && strength != 0 && !name.isEmpty() && drawable != 0
+    }
+
+    override fun saveCreature(){
+        if (canSaveCreature()) {
+            creatureRepository.saveCreature(creature)
+            getView()?.showCreatureSaved()
+        } else {
+            getView()?.showCreatureSavedError()
+        }
     }
 }
