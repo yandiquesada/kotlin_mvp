@@ -3,7 +3,7 @@ package com.raywenderlich.android.creaturemon.model
 class CreatureGenerator {
     fun generateCreature(creatureAttributes: CreatureAttributes, name: String = "", drawable: Int = 0): Creature {
         val hitPoints = getHitPoints(creatureAttributes)
-        return Creature(creatureAttributes, hitPoints, name)
+        return Creature(creatureAttributes, hitPoints, name, drawable)
     }
 
     private fun getHitPoints(creatureAttributes: CreatureAttributes): Int {
